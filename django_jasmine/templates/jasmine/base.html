@@ -11,6 +11,7 @@
     {# core files #}
     <script  src="{% get_static_prefix %}jasmine-latest/jasmine.js"></script>
     <script  src="{% get_static_prefix %}jasmine-latest/jasmine-html.js"></script>
+    <script  src="{% get_static_prefix %}jasmine-latest/boot.js"></script>
     <script  src="{% get_static_prefix %}jasmine-ajax-latest.js"></script>
     <script  src="{% get_static_prefix %}jasmine-jquery-latest.js"></script>
     {#<script  src="{% get_static_prefix %}blanket.min.js" data-cover-adapter="{% get_static_prefix %}jasmine-blanket.js"></script>#}
@@ -41,41 +42,5 @@
 
 </head>
 <body>
-
-<h1>Jasmine Spec Runner</h1>
-
-<script>
-    {% block jasmine %}
-    (function() {
-        var jasmineEnv = jasmine.getEnv();
-        jasmineEnv.updateInterval = 1000;
-
-        var htmlReporter = new jasmine.HtmlReporter();
-
-        jasmineEnv.addReporter(htmlReporter);
-
-        jasmineEnv.specFilter = function(spec) {
-            return htmlReporter.specFilter(spec);
-        };
-
-        // Additional configuration can be done in this block
-        {% block jasmine_extra %}{% endblock %}
-
-        var currentWindowOnload = window.onload;
-
-        window.onload = function() {
-            if (currentWindowOnload) {
-                currentWindowOnload();
-            }
-            execJasmine();
-        };
-
-        function execJasmine() {
-            jasmineEnv.execute();
-        }
-    })();
-    {% endblock %}
-</script>
-
 </body>
 </html>
